@@ -6,56 +6,65 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+print "clear City:"
+City.destroy_all
+puts " ✔"
+print "clear Dog:"
+Dog.destroy_all
+puts " ✔"
+print "clear Dogsitter:"
+Dogsitter.destroy_all
+puts " ✔"
+print "clear Stroll:"
+Stroll.destroy_all
+puts " ✔"
+print "clear JoinTableStrollDog:"
+JoinTableStrollDog.destroy_all
+puts " ✔\n\n"
 
-# City.destroy_all
-# Dog.destroy_all
-# Dogsitter.destroy_all
-# Stroll.destroy_all
-# JoinTableStrollDog.destroy_all
-
-puts "create city"
+print "create city"
 10.times do |index|
   City.create(
     city_name: Faker::Address.city
   )
-  puts index
 end
+puts " ✔"
 
-puts "create dog"
+print "create dog"
 10.times do |index|
   Dog.create(
     name: Faker::Name.first_name,
     city: City.all.sample
   )
-  puts index
 end
+puts " ✔"
 
-puts "create dogsitter"
+print "create dogsitter"
 10.times do |index|
   Dogsitter.create(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     city: City.all.sample
   )
-  puts index
 end
+puts " ✔"
 
 
-puts "create stroll"
+print "create stroll"
 10.times do |index|
-    puts index
   Stroll.create(
     date: Time.at(rand * Time.now.to_i),
     dogsitter: Dogsitter.all.sample,
     city: City.all.sample
   )
 end
+puts " ✔"
 
-puts "create JoinTableStrollDog"
+print "create JoinTableStrollDog"
 10.times do |index|
-    puts index
   JoinTableStrollDog.create(
     dog: Dog.all.sample,
     stroll: Stroll.all.sample
   )
 end
+puts " ✔"
